@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.IBinder;
 
 /**
- * Base TimerService to run for a specified amount of time
+ * Base ServiceService to run for a specified amount of time
  * before completing an action on timerFinished();
  * Extension of this class is recommended
  * then override the timerFinished() to completed an action
  */
-public class TimerService extends Service implements CountdownTimerInterface {
+public class ServiceService extends Service implements CountdownServiceInterface {
 
     protected long timeToRun;
 
@@ -18,12 +18,11 @@ public class TimerService extends Service implements CountdownTimerInterface {
 
     public static final long TWENTY_FOUR_HOURS = 86400000;
     public static final long TWELVE_HOURS = 43200000;
-
-    private CountdownTimerInterface countDownTimer;
+    public static final long TEN_MINUTES = 600000;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        this.timeToRun = intent.getLongExtra(TIME_TO_RUN, 10000);
+        this.timeToRun = intent.getLongExtra(TIME_TO_RUN, TEN_MINUTES);
         return START_STICKY;
 
     }
@@ -34,7 +33,7 @@ public class TimerService extends Service implements CountdownTimerInterface {
 
 
     @Override
-    public void countdownFinisihed() {
+    public void countdownFinished() {
         this.stopSelf();
     }
 }
