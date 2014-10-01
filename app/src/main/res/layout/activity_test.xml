@@ -9,6 +9,7 @@
     tools:context=".TestActivity">
 
     <Button
+        android:id="@+id/startBtn"
         android:text="@string/start_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
