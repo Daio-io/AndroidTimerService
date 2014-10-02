@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".services.TimerService" />
+        <service android:name=".services.TestServiceExtension" />
     </application>
 
 </manifest>
