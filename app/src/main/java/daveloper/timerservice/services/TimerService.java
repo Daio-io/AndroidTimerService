@@ -19,15 +19,18 @@ public class TimerService extends Service implements CountdownServiceInterface {
 
     public static final String TIME_TO_RUN = "TIME_TO_RUN";
 
-    public static final long TWENTY_FOUR_HOURS = 86400000;
-    public static final long TWELVE_HOURS = 43200000;
     public static final long TEN_MINUTES = 600000;
+    public static final long TEN_SECONDS = 10000;
 
     private CountDownInterface countdownTimer;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        this.timeToRun = intent.getLongExtra(TIME_TO_RUN, TEN_MINUTES);
+        if (intent != null)
+            timeToRun = intent.getLongExtra(TIME_TO_RUN, TEN_MINUTES);
+        else
+            timeToRun = TEN_SECONDS;
+
         countdownTimer = new ServiceCountdownTimer(this, this.timeToRun, 1000);
         countdownTimer.startCountDown();
         return START_STICKY;
